@@ -315,8 +315,10 @@ class ConversationMemory:
         # In production, this would call Holochain ontology zome
 
         # Rule 1: Predicate must be known
-        known_predicates = {'is_a', 'part_of', 'improves_upon', 'capable_of',
-                           'trained_on', 'evaluated_on', 'stated'}
+        # Synchronized with ontology_integrity/src/lib.rs get_relation()
+        known_predicates = {'is_a', 'part_of', 'related_to', 'has_property',
+                           'improves_upon', 'capable_of', 'trained_on',
+                           'evaluated_on', 'stated'}
         if predicate not in known_predicates:
             return (False, f"Unknown predicate: {predicate}")
 

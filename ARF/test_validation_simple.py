@@ -126,8 +126,10 @@ def test_all_known_predicates():
     try:
         memory = ConversationMemory(agent_id="test", storage_path=temp_dir)
 
-        known_predicates = ['is_a', 'part_of', 'improves_upon', 'capable_of',
-                           'trained_on', 'evaluated_on', 'stated']
+        # Synchronized with ontology_integrity/src/lib.rs get_relation()
+        known_predicates = ['is_a', 'part_of', 'related_to', 'has_property',
+                           'improves_upon', 'capable_of', 'trained_on',
+                           'evaluated_on', 'stated']
 
         for predicate in known_predicates:
             is_valid, error = memory._validate_triple(('X', predicate, 'Y'))
